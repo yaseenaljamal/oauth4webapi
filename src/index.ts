@@ -1387,18 +1387,21 @@ export async function processPushedAuthorizationResponse(
     throw new TypeError('"response" must be an instance of Response')
   }
 
-  if (response.status !== 201) {
+  let json!: JsonValue
+  try {
+    json = await preserveBodyStream(response).json()
+  } catch {}
+
+  // @ts-expect-error
+  if (response.status !== 201 || json?.error !== undefined) {
     let err: OAuth2Error | undefined
-    if ((err = await handleOAuthBodyError(response))) {
+    if ((err = await handleOAuthBodyError(json))) {
       return err
     }
     throw new OPE('"response" is not a conform Pushed Authorization Request Endpoint response')
   }
 
-  let json: JsonValue
-  try {
-    json = await preserveBodyStream(response).json()
-  } catch {
+  if (json === undefined) {
     throw new OPE('failed to parse "response" body as JSON')
   }
 
@@ -1916,18 +1919,21 @@ async function processGenericAccessTokenResponse(
     throw new TypeError('"response" must be an instance of Response')
   }
 
-  if (response.status !== 200) {
+  let json!: JsonValue
+  try {
+    json = await preserveBodyStream(response).json()
+  } catch {}
+
+  // @ts-expect-error
+  if (response.status !== 200 || json?.error !== undefined) {
     let err: OAuth2Error | undefined
-    if ((err = await handleOAuthBodyError(response))) {
+    if ((err = await handleOAuthBodyError(json))) {
       return err
     }
     throw new OPE('"response" is not a conform Token Endpoint response')
   }
 
-  let json: JsonValue
-  try {
-    json = await preserveBodyStream(response).json()
-  } catch {
+  if (json === undefined) {
     throw new OPE('failed to parse "response" body as JSON')
   }
 
@@ -2486,9 +2492,15 @@ export async function processRevocationResponse(
     throw new TypeError('"response" must be an instance of Response')
   }
 
-  if (response.status !== 200) {
+  let json!: JsonValue
+  try {
+    json = await preserveBodyStream(response).json()
+  } catch {}
+
+  // @ts-expect-error
+  if (response.status !== 200 || json?.error !== undefined) {
     let err: OAuth2Error | undefined
-    if ((err = await handleOAuthBodyError(response))) {
+    if ((err = await handleOAuthBodyError(json))) {
       return err
     }
     throw new OPE('"response" is not a conform Revocation Endpoint response')
@@ -2612,16 +2624,21 @@ export async function processIntrospectionResponse(
     throw new TypeError('"response" must be an instance of Response')
   }
 
-  if (response.status !== 200) {
+  let json!: JsonValue
+  try {
+    json = await preserveBodyStream(response).json()
+  } catch {}
+
+  // @ts-expect-error
+  if (response.status !== 200 || json?.error !== undefined) {
     let err: OAuth2Error | undefined
-    if ((err = await handleOAuthBodyError(response))) {
+    if ((err = await handleOAuthBodyError(json))) {
       return err
     }
     throw new OPE('"response" is not a conform Introspection Endpoint response')
   }
 
-  let json: JsonValue
-  if (getContentType(response) === 'application/token-introspection+jwt') {
+  if (!json && getContentType(response) === 'application/token-introspection+jwt') {
     if (typeof as.jwks_uri !== 'string') {
       throw new TypeError('"issuer.jwks_uri" must be a string')
     }
@@ -2645,11 +2662,10 @@ export async function processIntrospectionResponse(
       throw new OPE('JWT "token_introspection" claim must be a JSON object')
     }
   } else {
-    try {
-      json = await preserveBodyStream(response).json()
-    } catch {
+    if (json === undefined) {
       throw new OPE('failed to parse "response" body as JSON')
     }
+
     if (!isJsonObject(json)) {
       throw new OPE('"response" body must be a top level object')
     }
@@ -2752,27 +2768,25 @@ export async function processJwksResponse(response: Response): Promise<JsonWebKe
   return json
 }
 
-async function handleOAuthBodyError(response: Response): Promise<OAuth2Error | undefined> {
-  if (response.status > 399 && response.status < 500) {
-    try {
-      const json: JsonValue = await preserveBodyStream(response).json()
-      if (isJsonObject(json) && typeof json.error === 'string' && json.error.length) {
-        if (json.error_description !== undefined && typeof json.error_description !== 'string') {
-          delete json.error_description
-        }
-        if (json.error_uri !== undefined && typeof json.error_uri !== 'string') {
-          delete json.error_uri
-        }
-        if (json.algs !== undefined && typeof json.algs !== 'string') {
-          delete json.algs
-        }
-        if (json.scope !== undefined && typeof json.scope !== 'string') {
-          delete json.scope
-        }
-        return <OAuth2Error>json
+async function handleOAuthBodyError(json: JsonValue): Promise<OAuth2Error | undefined> {
+  try {
+    if (isJsonObject(json) && typeof json.error === 'string' && json.error.length) {
+      if (json.error_description !== undefined && typeof json.error_description !== 'string') {
+        delete json.error_description
       }
-    } catch {}
-  }
+      if (json.error_uri !== undefined && typeof json.error_uri !== 'string') {
+        delete json.error_uri
+      }
+      if (json.algs !== undefined && typeof json.algs !== 'string') {
+        delete json.algs
+      }
+      if (json.scope !== undefined && typeof json.scope !== 'string') {
+        delete json.scope
+      }
+      return <OAuth2Error>json
+    }
+  } catch {}
+
   return undefined
 }
 
@@ -3225,18 +3239,21 @@ export async function processDeviceAuthorizationResponse(
     throw new TypeError('"response" must be an instance of Response')
   }
 
-  if (response.status !== 200) {
+  let json!: JsonValue
+  try {
+    json = await preserveBodyStream(response).json()
+  } catch {}
+
+  // @ts-expect-error
+  if (response.status !== 200 || json?.error !== undefined) {
     let err: OAuth2Error | undefined
-    if ((err = await handleOAuthBodyError(response))) {
+    if ((err = await handleOAuthBodyError(json))) {
       return err
     }
     throw new OPE('"response" is not a conform Device Authorization Endpoint response')
   }
 
-  let json: JsonValue
-  try {
-    json = await preserveBodyStream(response).json()
-  } catch {
+  if (json === undefined) {
     throw new OPE('failed to parse "response" body as JSON')
   }
 
