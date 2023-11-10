@@ -122,15 +122,15 @@ export type ClientAuthenticationMethod =
  * }
  * ```
  *
- * @example CryptoKey algorithm for the `EdDSA` JWS Algorithm Identifier (Experimental)
+ * @example CryptoKey algorithm for the `Ed25519` JWS Algorithm Identifier (Experimental)
  *
  * Runtime support for this algorithm is very limited, it depends on the [Secure Curves in the Web
  * Cryptography API](https://wicg.github.io/webcrypto-secure-curves/) proposal which is yet to be
  * widely adopted. If the proposal changes this implementation will follow up with a minor release.
  *
  * ```ts
- * interface EdDSA extends KeyAlgorithm {
- *   name: 'Ed25519' | 'Ed448'
+ * interface Ed25519 extends KeyAlgorithm {
+ *   name: 'Ed25519'
  * }
  * ```
  */
@@ -139,8 +139,11 @@ export type JWSAlgorithm =
   | 'PS256'
   | 'ES256'
   | 'RS256'
+  | 'Ed25519'
+  // Soon to be DEPRECATED
   | 'EdDSA'
   // less used
+  | 'Ed448'
   | 'ES384'
   | 'PS384'
   | 'RS384'
@@ -466,6 +469,10 @@ export interface Client {
    * requests. Default is `client_secret_basic`.
    */
   token_endpoint_auth_method?: ClientAuthenticationMethod
+  /** TODO */
+  token_endpoint_auth_signing_alg?: JWSAlgorithm
+  /** TODO */
+  request_object_signing_alg?: JWSAlgorithm
   /**
    * JWS `alg` algorithm required for signing the ID Token issued to this Client. When not
    * configured the default is to allow only algorithms listed in
@@ -702,6 +709,8 @@ const SUPPORTED_JWS_ALGS: JWSAlgorithm[] = [
   'ES512',
   'RS512',
   'EdDSA',
+  'Ed25519',
+  'Ed448',
 ]
 
 export interface HttpRequestOptions {
@@ -973,6 +982,8 @@ export interface DPoPOptions extends CryptoKeyPair {
    * will be used automatically.
    */
   nonce?: string
+  /** TODO */
+  alg?: JWSAlgorithm
 }
 
 export interface DPoPRequestOptions {
@@ -1056,8 +1067,12 @@ function esAlg(key: CryptoKey): JWSAlgorithm {
   }
 }
 
-/** Determines a supported JWS `alg` identifier from CryptoKey instance properties. */
-function keyToJws(key: CryptoKey) {
+/**
+ * Determines a supported JWS `alg` identifier from CryptoKey instance properties. For
+ * Ed(DSA/25519/448) this checks the client setting, then checks the allowed server algorithms, then
+ * falls back on EdDSA as value
+ */
+function keyToJws(key: CryptoKey, as?: AuthorizationServer, clientConfig?: JWSAlgorithm) {
   switch (key.algorithm.name) {
     case 'RSA-PSS':
       return psAlg(key)
@@ -1066,8 +1081,15 @@ function keyToJws(key: CryptoKey) {
     case 'ECDSA':
       return esAlg(key)
     case 'Ed25519': // Fall through
-    case 'Ed448':
-      return 'EdDSA'
+    case 'Ed448': {
+      if ([key.algorithm.name, 'EdDSA'].includes(clientConfig!)) {
+        return clientConfig!
+      }
+
+      return as?.token_endpoint_auth_signing_alg_values_supported?.includes(key.algorithm.name)
+        ? key.algorithm.name
+        : 'EdDSA'
+    }
     default:
       throw new UnsupportedOperationError('unsupported CryptoKey algorithm name')
   }
@@ -1117,7 +1139,7 @@ async function privateKeyJwt(
 ) {
   return jwt(
     {
-      alg: keyToJws(key),
+      alg: keyToJws(key, as, client.token_endpoint_auth_signing_alg),
       kid,
     },
     clientAssertion(as, client),
@@ -1308,7 +1330,7 @@ export async function issueRequestObject(
 
   return jwt(
     {
-      alg: keyToJws(key),
+      alg: keyToJws(key, as, client.request_object_signing_alg),
       typ: 'oauth-authz-req+jwt',
       kid,
     },
@@ -1319,6 +1341,7 @@ export async function issueRequestObject(
 
 /** Generates a unique DPoP Proof JWT */
 async function dpopProofJwt(
+  as: AuthorizationServer | undefined,
   headers: Headers,
   options: DPoPOptions,
   url: URL,
@@ -1347,7 +1370,7 @@ async function dpopProofJwt(
   const now = epochTime() + clockSkew
   const proof = await jwt(
     {
-      alg: keyToJws(privateKey),
+      alg: keyToJws(privateKey, as, options?.alg),
       typ: 'dpop+jwt',
       jwk: await publicJwk(publicKey),
     },
@@ -1413,7 +1436,7 @@ export async function pushedAuthorizationRequest(
   headers.set('accept', 'application/json')
 
   if (options?.DPoP !== undefined) {
-    await dpopProofJwt(headers, options.DPoP, url, 'POST', getClockSkew(client))
+    await dpopProofJwt(as, headers, options.DPoP, url, 'POST', getClockSkew(client))
   }
 
   return authenticatedRequest(as, client, 'POST', url, body, headers, options)
@@ -1651,6 +1674,7 @@ export async function protectedResourceRequest(
     headers.set('authorization', `Bearer ${accessToken}`)
   } else {
     await dpopProofJwt(
+      undefined,
       headers,
       options.DPoP,
       url,
@@ -1833,6 +1857,8 @@ async function getPublicSigKeyFromIssuerJwksUri(
       case alg === 'ES256' && jwk.crv !== 'P-256': // Fall through
       case alg === 'ES384' && jwk.crv !== 'P-384': // Fall through
       case alg === 'ES512' && jwk.crv !== 'P-521': // Fall through
+      case alg === 'Ed25519' && jwk.crv !== 'Ed25519': // Fall through
+      case alg === 'Ed448' && jwk.crv !== 'Ed448': // Fall through
       case alg === 'EdDSA' && !(jwk.crv === 'Ed25519' || jwk.crv === 'Ed448'):
         return false
     }
@@ -2012,7 +2038,7 @@ async function tokenEndpointRequest(
   headers.set('accept', 'application/json')
 
   if (options?.DPoP !== undefined) {
-    await dpopProofJwt(headers, options.DPoP, url, 'POST', getClockSkew(client))
+    await dpopProofJwt(as, headers, options.DPoP, url, 'POST', getClockSkew(client))
   }
 
   return authenticatedRequest(as, client, 'POST', url, parameters, headers, options)
@@ -3331,6 +3357,9 @@ function algToSubtle(
       return { name: 'ECDSA', namedCurve: `P-${alg.slice(-3)}` }
     case 'ES512':
       return { name: 'ECDSA', namedCurve: 'P-521' }
+    case 'Ed25519': // Fall through
+    case 'Ed448':
+      return { name: alg }
     case 'EdDSA': {
       switch (crv) {
         case 'Ed25519':
