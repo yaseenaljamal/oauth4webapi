@@ -217,7 +217,7 @@ export default async () => {
     logBoth(`- Certification Profile Name: **${certificationProfileName}**`)
   }
 
-  const files: Set<string> = new Set()
+  const files: string[] = []
   for (const module of plan.modules) {
     switch (PLAN_NAME) {
       case 'fapi1-advanced-final-client-test-plan':
@@ -229,7 +229,7 @@ export default async () => {
         )
         const path = `./conformance/fapi/${name}.ts`
         ensureTestFile(path, name)
-        files.add(path)
+        files.push(path)
         break
       }
       case 'oidcc-client-test-plan':
@@ -237,11 +237,15 @@ export default async () => {
         const name = module.testModule.replace('oidcc-client-test-', '')
         const path = `./conformance/oidc/${name}.ts`
         ensureTestFile(path, name)
-        files.add(path)
+        files.push(path)
         break
       default:
         throw new Error()
     }
+  }
+
+  if (process.env.CI) {
+    files.push('./conformance/download_archive.ts')
   }
 
   return {
@@ -258,7 +262,7 @@ export default async () => {
       ts: 'module',
       mjs: true,
     },
-    files: [...files, './conformance/download_archive.ts'],
+    files: [...new Set(files)],
     workerThreads: false,
     nodeArguments: ['--enable-source-maps'],
   }
