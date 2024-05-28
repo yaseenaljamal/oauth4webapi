@@ -1,25 +1,18 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: UseMTLSAliasOptions
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extended by
 
-## Table of contents
-
-### Properties
-
-- [[useMtlsAlias]](UseMTLSAliasOptions.md#usemtlsalias)
+- [`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md)
+- [`UserInfoRequestOptions`](UserInfoRequestOptions.md)
 
 ## Properties
 
-### [useMtlsAlias]
+### \[useMtlsAlias\]?
 
-• `Optional` **[useMtlsAlias]**: `boolean`
+> `optional` **\[useMtlsAlias\]**: `boolean`
 
 See [useMtlsAlias](../variables/useMtlsAlias.md).
-
-## Hierarchy
-
-- **`UseMTLSAliasOptions`**
-
-  ↳ [`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md)
-
-  ↳ [`UserInfoRequestOptions`](UserInfoRequestOptions.md)

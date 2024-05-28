@@ -1,8 +1,10 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Variable: customFetch
 
-[💗 Help the project](https://github.com/sponsors/panva)
-
-• `Const` **customFetch**: unique `symbol`
+> `const` **customFetch**: unique `symbol`
 
 When configured on an interface that extends [HttpRequestOptions](../interfaces/HttpRequestOptions.md), that's every `options`
 parameter for functions that trigger HTTP Requests, this replaces the use of global fetch. As a
@@ -30,7 +32,7 @@ Known caveats:
 - Returning self-constructed Response instances prohibits AS/RS-signalled DPoP Nonce
   caching.
 
-**`Example`**
+## Examples
 
 Using [sindresorhus/ky](https://github.com/sindresorhus/ky) for retries and its hooks feature for
 logging outgoing requests and their responses.
@@ -64,8 +66,6 @@ await oauth.discoveryRequest(new URL('https://as.example.com'), {
     }),
 })
 ```
-
-**`Example`**
 
 Using [nodejs/undici](https://github.com/nodejs/undici) to mock responses in tests.
 

@@ -1,26 +1,21 @@
-# Interface: PushedAuthorizationResponse
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
+
+# Interface: PushedAuthorizationResponse
 
 ## Indexable
 
-▪ [parameter: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [expires\_in](PushedAuthorizationResponse.md#expires_in)
-- [request\_uri](PushedAuthorizationResponse.md#request_uri)
+ \[`parameter`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
 ### expires\_in
 
-• `Readonly` **expires\_in**: `number`
+> `readonly` **expires\_in**: `number`
 
-___
+***
 
 ### request\_uri
 
-• `Readonly` **request\_uri**: `string`
+> `readonly` **request\_uri**: `string`

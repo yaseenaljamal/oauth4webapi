@@ -1,54 +1,45 @@
-# Interface: UserInfoAddress
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
+
+# Interface: UserInfoAddress
 
 ## Indexable
 
-▪ [claim: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [country](UserInfoAddress.md#country)
-- [formatted](UserInfoAddress.md#formatted)
-- [locality](UserInfoAddress.md#locality)
-- [postal\_code](UserInfoAddress.md#postal_code)
-- [region](UserInfoAddress.md#region)
-- [street\_address](UserInfoAddress.md#street_address)
+ \[`claim`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
-### country
+### country?
 
-• `Optional` `Readonly` **country**: `string`
+> `optional` `readonly` **country**: `string`
 
-___
+***
 
-### formatted
+### formatted?
 
-• `Optional` `Readonly` **formatted**: `string`
+> `optional` `readonly` **formatted**: `string`
 
-___
+***
 
-### locality
+### locality?
 
-• `Optional` `Readonly` **locality**: `string`
+> `optional` `readonly` **locality**: `string`
 
-___
+***
 
-### postal\_code
+### postal\_code?
 
-• `Optional` `Readonly` **postal\_code**: `string`
+> `optional` `readonly` **postal\_code**: `string`
 
-___
+***
 
-### region
+### region?
 
-• `Optional` `Readonly` **region**: `string`
+> `optional` `readonly` **region**: `string`
 
-___
+***
 
-### street\_address
+### street\_address?
 
-• `Optional` `Readonly` **street\_address**: `string`
+> `optional` `readonly` **street\_address**: `string`

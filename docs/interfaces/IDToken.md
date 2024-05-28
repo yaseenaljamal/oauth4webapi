@@ -1,95 +1,111 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: IDToken
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extends
+
+- `JWTPayload`
 
 ## Indexable
 
-▪ [claim: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [aud](IDToken.md#aud)
-- [exp](IDToken.md#exp)
-- [iat](IDToken.md#iat)
-- [iss](IDToken.md#iss)
-- [sub](IDToken.md#sub)
-- [auth\_time](IDToken.md#auth_time)
-- [azp](IDToken.md#azp)
-- [cnf](IDToken.md#cnf)
-- [jti](IDToken.md#jti)
-- [nbf](IDToken.md#nbf)
-- [nonce](IDToken.md#nonce)
+ \[`claim`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
 ### aud
 
-• `Readonly` **aud**: `string` \| `string`[]
+> `readonly` **aud**: `string` \| `string`[]
 
-___
+#### Overrides
+
+`JWTPayload.aud`
+
+***
 
 ### exp
 
-• `Readonly` **exp**: `number`
+> `readonly` **exp**: `number`
 
-___
+#### Overrides
+
+`JWTPayload.exp`
+
+***
 
 ### iat
 
-• `Readonly` **iat**: `number`
+> `readonly` **iat**: `number`
 
-___
+#### Overrides
+
+`JWTPayload.iat`
+
+***
 
 ### iss
 
-• `Readonly` **iss**: `string`
+> `readonly` **iss**: `string`
 
-___
+#### Overrides
+
+`JWTPayload.iss`
+
+***
 
 ### sub
 
-• `Readonly` **sub**: `string`
+> `readonly` **sub**: `string`
 
-___
+#### Overrides
 
-### auth\_time
+`JWTPayload.sub`
 
-• `Optional` `Readonly` **auth\_time**: `number`
+***
 
-___
+### auth\_time?
 
-### azp
+> `optional` `readonly` **auth\_time**: `number`
 
-• `Optional` `Readonly` **azp**: `string`
+***
 
-___
+### azp?
 
-### cnf
+> `optional` `readonly` **azp**: `string`
 
-• `Optional` `Readonly` **cnf**: [`ConfirmationClaims`](ConfirmationClaims.md)
+***
 
-___
+### cnf?
 
-### jti
+> `optional` `readonly` **cnf**: [`ConfirmationClaims`](ConfirmationClaims.md)
 
-• `Optional` `Readonly` **jti**: `string`
+#### Inherited from
 
-___
+`JWTPayload.cnf`
 
-### nbf
+***
 
-• `Optional` `Readonly` **nbf**: `number`
+### jti?
 
-___
+> `optional` `readonly` **jti**: `string`
 
-### nonce
+#### Inherited from
 
-• `Optional` `Readonly` **nonce**: `string`
+`JWTPayload.jti`
 
-## Hierarchy
+***
 
-- `JWTPayload`
+### nbf?
 
-  ↳ **`IDToken`**
+> `optional` `readonly` **nbf**: `number`
+
+#### Inherited from
+
+`JWTPayload.nbf`
+
+***
+
+### nonce?
+
+> `optional` `readonly` **nonce**: `string`

@@ -1,63 +1,53 @@
-# Interface: TokenEndpointResponse
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
+
+# Interface: TokenEndpointResponse
 
 ## Indexable
 
-▪ [parameter: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [access\_token](TokenEndpointResponse.md#access_token)
-- [token\_type](TokenEndpointResponse.md#token_type)
-- [authorization\_details](TokenEndpointResponse.md#authorization_details)
-- [expires\_in](TokenEndpointResponse.md#expires_in)
-- [id\_token](TokenEndpointResponse.md#id_token)
-- [refresh\_token](TokenEndpointResponse.md#refresh_token)
-- [scope](TokenEndpointResponse.md#scope)
+ \[`parameter`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
 ### access\_token
 
-• `Readonly` **access\_token**: `string`
+> `readonly` **access\_token**: `string`
 
-___
+***
 
 ### token\_type
 
-• `Readonly` **token\_type**: [`Lowercase`]( https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#lowercasestringtype )\<`string`\>
+> `readonly` **token\_type**: [`Lowercase`](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#lowercasestringtype)\<`string`\>
 
 NOTE: because the value is case insensitive it is always returned lowercased
 
-___
+***
 
-### authorization\_details
+### authorization\_details?
 
-• `Optional` `Readonly` **authorization\_details**: [`AuthorizationDetails`](AuthorizationDetails.md)[]
+> `optional` `readonly` **authorization\_details**: [`AuthorizationDetails`](AuthorizationDetails.md)[]
 
-___
+***
 
-### expires\_in
+### expires\_in?
 
-• `Optional` `Readonly` **expires\_in**: `number`
+> `optional` `readonly` **expires\_in**: `number`
 
-___
+***
 
-### id\_token
+### id\_token?
 
-• `Optional` `Readonly` **id\_token**: `string`
+> `optional` `readonly` **id\_token**: `string`
 
-___
+***
 
-### refresh\_token
+### refresh\_token?
 
-• `Optional` `Readonly` **refresh\_token**: `string`
+> `optional` `readonly` **refresh\_token**: `string`
 
-___
+***
 
-### scope
+### scope?
 
-• `Optional` `Readonly` **scope**: `string`
+> `optional` `readonly` **scope**: `string`

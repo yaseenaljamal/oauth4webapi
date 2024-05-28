@@ -1,68 +1,81 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: ValidateJWTAccessTokenOptions
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extends
 
-## Table of contents
-
-### Properties
-
-- [[clockSkew]](ValidateJWTAccessTokenOptions.md#clockskew)
-- [[clockTolerance]](ValidateJWTAccessTokenOptions.md#clocktolerance)
-- [[customFetch]](ValidateJWTAccessTokenOptions.md#customfetch)
-- [headers](ValidateJWTAccessTokenOptions.md#headers)
-- [requireDPoP](ValidateJWTAccessTokenOptions.md#requiredpop)
-- [signal](ValidateJWTAccessTokenOptions.md#signal)
+- [`HttpRequestOptions`](HttpRequestOptions.md)
 
 ## Properties
 
-### [clockSkew]
+### \[clockSkew\]?
 
-• `Optional` **[clockSkew]**: `number`
-
-Same functionality as in [Client](Client.md)
-
-___
-
-### [clockTolerance]
-
-• `Optional` **[clockTolerance]**: `number`
+> `optional` **\[clockSkew\]**: `number`
 
 Same functionality as in [Client](Client.md)
 
-___
+***
 
-### [customFetch]
+### \[clockTolerance\]?
 
-• `Optional` **[customFetch]**: (`input`: `RequestInfo` \| [`URL`]( https://developer.mozilla.org/docs/Web/API/URL ), `init?`: `RequestInit`) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Response`]( https://developer.mozilla.org/docs/Web/API/Response )\>
+> `optional` **\[clockTolerance\]**: `number`
+
+Same functionality as in [Client](Client.md)
+
+***
+
+### \[customFetch\]()?
+
+> `optional` **\[customFetch\]**: (`input`, `init`?) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 See [customFetch](../variables/customFetch.md).
 
-___
+#### Parameters
 
-### headers
+• **input**: `RequestInfo` \| [`URL`](https://developer.mozilla.org/docs/Web/API/URL)
 
-• `Optional` **headers**: [`Record`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type )\<`string`, `string`\> \| [`string`, `string`][] \| [`Headers`]( https://developer.mozilla.org/docs/Web/API/Headers )
+• **init?**: `RequestInit`
+
+#### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+#### Inherited from
+
+[`HttpRequestOptions`](HttpRequestOptions.md).[`[customFetch]`](HttpRequestOptions.md#%5Bcustomfetch%5D)
+
+***
+
+### headers?
+
+> `optional` **headers**: [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\> \| [`string`, `string`][] \| [`Headers`](https://developer.mozilla.org/docs/Web/API/Headers)
 
 Headers to additionally send with the HTTP Request(s) triggered by this function's invocation.
 
-___
+#### Inherited from
 
-### requireDPoP
+[`HttpRequestOptions`](HttpRequestOptions.md).[`headers`](HttpRequestOptions.md#headers)
 
-• `Optional` **requireDPoP**: `boolean`
+***
+
+### requireDPoP?
+
+> `optional` **requireDPoP**: `boolean`
 
 Indicates whether DPoP use is required.
 
-___
+***
 
-### signal
+### signal?
 
-• `Optional` **signal**: [`AbortSignal`]( https://developer.mozilla.org/docs/Web/API/AbortSignal ) \| () => [`AbortSignal`]( https://developer.mozilla.org/docs/Web/API/AbortSignal )
+> `optional` **signal**: [`AbortSignal`](https://developer.mozilla.org/docs/Web/API/AbortSignal) \| () => [`AbortSignal`](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 
 An AbortSignal instance, or a factory returning one, to abort the HTTP Request(s) triggered by
 this function's invocation.
 
-**`Example`**
+#### Example
 
 A 5000ms timeout AbortSignal for every request
 
@@ -70,8 +83,6 @@ A 5000ms timeout AbortSignal for every request
 const signal = () => AbortSignal.timeout(5_000) // Note: AbortSignal.timeout may not yet be available in all runtimes.
 ```
 
-## Hierarchy
+#### Inherited from
 
-- [`HttpRequestOptions`](HttpRequestOptions.md)
-
-  ↳ **`ValidateJWTAccessTokenOptions`**
+[`HttpRequestOptions`](HttpRequestOptions.md).[`signal`](HttpRequestOptions.md#signal)

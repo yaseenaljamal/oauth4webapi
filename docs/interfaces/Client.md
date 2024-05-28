@@ -1,51 +1,37 @@
-# Interface: Client
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
+
+# Interface: Client
 
 Recognized Client Metadata that have an effect on the exposed functionality.
 
-**`See`**
+## See
 
 [IANA OAuth Client Registration Metadata registry](https://www.iana.org/assignments/oauth-parameters/oauth-parameters.xhtml#client-metadata)
 
 ## Indexable
 
-▪ [metadata: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [client\_id](Client.md#client_id)
-- [[clockSkew]](Client.md#clockskew)
-- [[clockTolerance]](Client.md#clocktolerance)
-- [authorization\_signed\_response\_alg](Client.md#authorization_signed_response_alg)
-- [client\_secret](Client.md#client_secret)
-- [default\_max\_age](Client.md#default_max_age)
-- [id\_token\_signed\_response\_alg](Client.md#id_token_signed_response_alg)
-- [introspection\_signed\_response\_alg](Client.md#introspection_signed_response_alg)
-- [require\_auth\_time](Client.md#require_auth_time)
-- [token\_endpoint\_auth\_method](Client.md#token_endpoint_auth_method)
-- [userinfo\_signed\_response\_alg](Client.md#userinfo_signed_response_alg)
+ \[`metadata`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
 ### client\_id
 
-• **client\_id**: `string`
+> **client\_id**: `string`
 
 Client identifier.
 
-___
+***
 
-### [clockSkew]
+### \[clockSkew\]?
 
-• `Optional` **[clockSkew]**: `number`
+> `optional` **\[clockSkew\]**: `number`
 
 Use to adjust the client's assumed current time. Positive and negative finite values
 representing seconds are allowed. Default is `0` (Date.now() + 0 seconds is used).
 
-**`Example`**
+#### Examples
 
 When the client's local clock is mistakenly 1 hour in the past
 
@@ -57,8 +43,6 @@ const client: oauth.Client = {
 }
 ```
 
-**`Example`**
-
 When the client's local clock is mistakenly 1 hour in the future
 
 ```ts
@@ -69,16 +53,16 @@ const client: oauth.Client = {
 }
 ```
 
-___
+***
 
-### [clockTolerance]
+### \[clockTolerance\]?
 
-• `Optional` **[clockTolerance]**: `number`
+> `optional` **\[clockTolerance\]**: `number`
 
 Use to set allowed client's clock tolerance when checking DateTime JWT Claims. Only positive
 finite values representing seconds are allowed. Default is `30` (30 seconds).
 
-**`Example`**
+#### Example
 
 Tolerate 30 seconds clock skew when validating JWT claims like exp or nbf.
 
@@ -90,78 +74,78 @@ const client: oauth.Client = {
 }
 ```
 
-___
+***
 
-### authorization\_signed\_response\_alg
+### authorization\_signed\_response\_alg?
 
-• `Optional` **authorization\_signed\_response\_alg**: [`JWSAlgorithm`](../types/JWSAlgorithm.md)
+> `optional` **authorization\_signed\_response\_alg**: [`JWSAlgorithm`](../type-aliases/JWSAlgorithm.md)
 
 JWS `alg` algorithm required for signing authorization responses. When not configured the
-default is to allow only [supported algorithms](../types/JWSAlgorithm.md) listed in
+default is to allow only [supported algorithms](../type-aliases/JWSAlgorithm.md) listed in
 [`as.authorization_signing_alg_values_supported`](AuthorizationServer.md#authorization_signing_alg_values_supported)
 and fall back to `RS256` when the authorization server metadata is not set.
 
-___
+***
 
-### client\_secret
+### client\_secret?
 
-• `Optional` **client\_secret**: `string`
+> `optional` **client\_secret**: `string`
 
 Client secret.
 
-___
+***
 
-### default\_max\_age
+### default\_max\_age?
 
-• `Optional` **default\_max\_age**: `number`
+> `optional` **default\_max\_age**: `number`
 
 Default Maximum Authentication Age.
 
-___
+***
 
-### id\_token\_signed\_response\_alg
+### id\_token\_signed\_response\_alg?
 
-• `Optional` **id\_token\_signed\_response\_alg**: `string`
+> `optional` **id\_token\_signed\_response\_alg**: `string`
 
 JWS `alg` algorithm required for signing the ID Token issued to this Client. When not
 configured the default is to allow only algorithms listed in
 [`as.id_token_signing_alg_values_supported`](AuthorizationServer.md#id_token_signing_alg_values_supported)
 and fall back to `RS256` when the authorization server metadata is not set.
 
-___
+***
 
-### introspection\_signed\_response\_alg
+### introspection\_signed\_response\_alg?
 
-• `Optional` **introspection\_signed\_response\_alg**: `string`
+> `optional` **introspection\_signed\_response\_alg**: `string`
 
 JWS `alg` algorithm REQUIRED for signed introspection responses. When not configured the
 default is to allow only algorithms listed in
 [`as.introspection_signing_alg_values_supported`](AuthorizationServer.md#introspection_signing_alg_values_supported)
 and fall back to `RS256` when the authorization server metadata is not set.
 
-___
+***
 
-### require\_auth\_time
+### require\_auth\_time?
 
-• `Optional` **require\_auth\_time**: `boolean`
+> `optional` **require\_auth\_time**: `boolean`
 
 Boolean value specifying whether the [`auth_time`](IDToken.md#auth_time) Claim in the ID Token
 is REQUIRED. Default is `false`.
 
-___
+***
 
-### token\_endpoint\_auth\_method
+### token\_endpoint\_auth\_method?
 
-• `Optional` **token\_endpoint\_auth\_method**: [`ClientAuthenticationMethod`](../types/ClientAuthenticationMethod.md)
+> `optional` **token\_endpoint\_auth\_method**: [`ClientAuthenticationMethod`](../type-aliases/ClientAuthenticationMethod.md)
 
-Client [authentication method](../types/ClientAuthenticationMethod.md) for the client's authenticated
+Client [authentication method](../type-aliases/ClientAuthenticationMethod.md) for the client's authenticated
 requests. Default is `client_secret_basic`.
 
-___
+***
 
-### userinfo\_signed\_response\_alg
+### userinfo\_signed\_response\_alg?
 
-• `Optional` **userinfo\_signed\_response\_alg**: `string`
+> `optional` **userinfo\_signed\_response\_alg**: `string`
 
 JWS `alg` algorithm REQUIRED for signing UserInfo Responses. When not configured the default is
 to allow only algorithms listed in

@@ -1,33 +1,31 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Class: OperationProcessingError
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extends
 
-## Table of contents
-
-### Constructors
-
-- [constructor](OperationProcessingError.md#constructor)
+- [`Error`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error)
 
 ## Constructors
 
-### constructor
+### new OperationProcessingError()
 
-• **new OperationProcessingError**(`message`, `options?`): [`OperationProcessingError`](OperationProcessingError.md)
+> **new OperationProcessingError**(`message`, `options`?): [`OperationProcessingError`](OperationProcessingError.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-| `options?` | `Object` |
-| `options.cause?` | `unknown` |
+• **message**: `string`
+
+• **options?**
+
+• **options.cause?**: `unknown`
 
 #### Returns
 
 [`OperationProcessingError`](OperationProcessingError.md)
 
-## Hierarchy
+#### Overrides
 
-- [`Error`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error )
-
-  ↳ **`OperationProcessingError`**
+`Error.constructor`

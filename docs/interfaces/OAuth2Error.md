@@ -1,47 +1,39 @@
-# Interface: OAuth2Error
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
+
+# Interface: OAuth2Error
 
 ## Indexable
 
-▪ [parameter: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [error](OAuth2Error.md#error)
-- [algs](OAuth2Error.md#algs)
-- [error\_description](OAuth2Error.md#error_description)
-- [error\_uri](OAuth2Error.md#error_uri)
-- [scope](OAuth2Error.md#scope)
+ \[`parameter`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
 ### error
 
-• `Readonly` **error**: `string`
+> `readonly` **error**: `string`
 
-___
+***
 
-### algs
+### algs?
 
-• `Optional` `Readonly` **algs**: `string`
+> `optional` `readonly` **algs**: `string`
 
-___
+***
 
-### error\_description
+### error\_description?
 
-• `Optional` `Readonly` **error\_description**: `string`
+> `optional` `readonly` **error\_description**: `string`
 
-___
+***
 
-### error\_uri
+### error\_uri?
 
-• `Optional` `Readonly` **error\_uri**: `string`
+> `optional` `readonly` **error\_uri**: `string`
 
-___
+***
 
-### scope
+### scope?
 
-• `Optional` `Readonly` **scope**: `string`
+> `optional` `readonly` **scope**: `string`

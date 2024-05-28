@@ -1,61 +1,83 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: DeviceAuthorizationRequestOptions
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extends
 
-## Table of contents
-
-### Properties
-
-- [[customFetch]](DeviceAuthorizationRequestOptions.md#customfetch)
-- [[useMtlsAlias]](DeviceAuthorizationRequestOptions.md#usemtlsalias)
-- [clientPrivateKey](DeviceAuthorizationRequestOptions.md#clientprivatekey)
-- [headers](DeviceAuthorizationRequestOptions.md#headers)
-- [signal](DeviceAuthorizationRequestOptions.md#signal)
+- [`HttpRequestOptions`](HttpRequestOptions.md).[`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md)
 
 ## Properties
 
-### [customFetch]
+### \[customFetch\]()?
 
-• `Optional` **[customFetch]**: (`input`: `RequestInfo` \| [`URL`]( https://developer.mozilla.org/docs/Web/API/URL ), `init?`: `RequestInit`) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Response`]( https://developer.mozilla.org/docs/Web/API/Response )\>
+> `optional` **\[customFetch\]**: (`input`, `init`?) => [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
 
 See [customFetch](../variables/customFetch.md).
 
-___
+#### Parameters
 
-### [useMtlsAlias]
+• **input**: `RequestInfo` \| [`URL`](https://developer.mozilla.org/docs/Web/API/URL)
 
-• `Optional` **[useMtlsAlias]**: `boolean`
+• **init?**: `RequestInit`
+
+#### Returns
+
+[`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)\<[`Response`](https://developer.mozilla.org/docs/Web/API/Response)\>
+
+#### Inherited from
+
+[`HttpRequestOptions`](HttpRequestOptions.md).[`[customFetch]`](HttpRequestOptions.md#%5Bcustomfetch%5D)
+
+***
+
+### \[useMtlsAlias\]?
+
+> `optional` **\[useMtlsAlias\]**: `boolean`
 
 See [useMtlsAlias](../variables/useMtlsAlias.md).
 
-___
+#### Inherited from
 
-### clientPrivateKey
+[`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md).[`[useMtlsAlias]`](AuthenticatedRequestOptions.md#%5Busemtlsalias%5D)
 
-• `Optional` **clientPrivateKey**: [`CryptoKey`]( https://developer.mozilla.org/docs/Web/API/CryptoKey ) \| [`PrivateKey`](PrivateKey.md)
+***
+
+### clientPrivateKey?
+
+> `optional` **clientPrivateKey**: [`CryptoKey`](https://developer.mozilla.org/docs/Web/API/CryptoKey) \| [`PrivateKey`](PrivateKey.md)
 
 Private key to use for `private_key_jwt`
-[client authentication](../types/ClientAuthenticationMethod.md). Its algorithm must be compatible with
-a supported [JWS `alg` Algorithm](../types/JWSAlgorithm.md).
+[client authentication](../type-aliases/ClientAuthenticationMethod.md). Its algorithm must be compatible with
+a supported [JWS `alg` Algorithm](../type-aliases/JWSAlgorithm.md).
 
-___
+#### Inherited from
 
-### headers
+[`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md).[`clientPrivateKey`](AuthenticatedRequestOptions.md#clientprivatekey)
 
-• `Optional` **headers**: [`Record`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type )\<`string`, `string`\> \| [`string`, `string`][] \| [`Headers`]( https://developer.mozilla.org/docs/Web/API/Headers )
+***
+
+### headers?
+
+> `optional` **headers**: [`Record`](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)\<`string`, `string`\> \| [`string`, `string`][] \| [`Headers`](https://developer.mozilla.org/docs/Web/API/Headers)
 
 Headers to additionally send with the HTTP Request(s) triggered by this function's invocation.
 
-___
+#### Inherited from
 
-### signal
+[`HttpRequestOptions`](HttpRequestOptions.md).[`headers`](HttpRequestOptions.md#headers)
 
-• `Optional` **signal**: [`AbortSignal`]( https://developer.mozilla.org/docs/Web/API/AbortSignal ) \| () => [`AbortSignal`]( https://developer.mozilla.org/docs/Web/API/AbortSignal )
+***
+
+### signal?
+
+> `optional` **signal**: [`AbortSignal`](https://developer.mozilla.org/docs/Web/API/AbortSignal) \| () => [`AbortSignal`](https://developer.mozilla.org/docs/Web/API/AbortSignal)
 
 An AbortSignal instance, or a factory returning one, to abort the HTTP Request(s) triggered by
 this function's invocation.
 
-**`Example`**
+#### Example
 
 A 5000ms timeout AbortSignal for every request
 
@@ -63,10 +85,6 @@ A 5000ms timeout AbortSignal for every request
 const signal = () => AbortSignal.timeout(5_000) // Note: AbortSignal.timeout may not yet be available in all runtimes.
 ```
 
-## Hierarchy
+#### Inherited from
 
-- [`HttpRequestOptions`](HttpRequestOptions.md)
-
-- [`AuthenticatedRequestOptions`](AuthenticatedRequestOptions.md)
-
-  ↳ **`DeviceAuthorizationRequestOptions`**
+[`HttpRequestOptions`](HttpRequestOptions.md).[`signal`](HttpRequestOptions.md#signal)

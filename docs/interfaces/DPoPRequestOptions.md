@@ -1,31 +1,21 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: DPoPRequestOptions
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extended by
 
-## Table of contents
-
-### Properties
-
-- [DPoP](DPoPRequestOptions.md#dpop)
+- [`PushedAuthorizationRequestOptions`](PushedAuthorizationRequestOptions.md)
+- [`ProtectedResourceRequestOptions`](ProtectedResourceRequestOptions.md)
+- [`UserInfoRequestOptions`](UserInfoRequestOptions.md)
+- [`TokenEndpointRequestOptions`](TokenEndpointRequestOptions.md)
+- [`ClientCredentialsGrantRequestOptions`](ClientCredentialsGrantRequestOptions.md)
 
 ## Properties
 
-### DPoP
+### DPoP?
 
-• `Optional` **DPoP**: [`DPoPOptions`](DPoPOptions.md)
+> `optional` **DPoP**: [`DPoPOptions`](DPoPOptions.md)
 
 DPoP-related options.
-
-## Hierarchy
-
-- **`DPoPRequestOptions`**
-
-  ↳ [`PushedAuthorizationRequestOptions`](PushedAuthorizationRequestOptions.md)
-
-  ↳ [`ProtectedResourceRequestOptions`](ProtectedResourceRequestOptions.md)
-
-  ↳ [`UserInfoRequestOptions`](UserInfoRequestOptions.md)
-
-  ↳ [`TokenEndpointRequestOptions`](TokenEndpointRequestOptions.md)
-
-  ↳ [`ClientCredentialsGrantRequestOptions`](ClientCredentialsGrantRequestOptions.md)

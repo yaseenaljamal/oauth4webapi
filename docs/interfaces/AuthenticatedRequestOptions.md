@@ -1,46 +1,40 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: AuthenticatedRequestOptions
 
-[💗 Help the project](https://github.com/sponsors/panva)
-
-## Table of contents
-
-### Properties
-
-- [[useMtlsAlias]](AuthenticatedRequestOptions.md#usemtlsalias)
-- [clientPrivateKey](AuthenticatedRequestOptions.md#clientprivatekey)
-
-## Properties
-
-### [useMtlsAlias]
-
-• `Optional` **[useMtlsAlias]**: `boolean`
-
-See [useMtlsAlias](../variables/useMtlsAlias.md).
-
-___
-
-### clientPrivateKey
-
-• `Optional` **clientPrivateKey**: [`CryptoKey`]( https://developer.mozilla.org/docs/Web/API/CryptoKey ) \| [`PrivateKey`](PrivateKey.md)
-
-Private key to use for `private_key_jwt`
-[client authentication](../types/ClientAuthenticationMethod.md). Its algorithm must be compatible with
-a supported [JWS `alg` Algorithm](../types/JWSAlgorithm.md).
-
-## Hierarchy
+## Extends
 
 - [`UseMTLSAliasOptions`](UseMTLSAliasOptions.md)
 
-  ↳ **`AuthenticatedRequestOptions`**
+## Extended by
 
-  ↳↳ [`PushedAuthorizationRequestOptions`](PushedAuthorizationRequestOptions.md)
+- [`PushedAuthorizationRequestOptions`](PushedAuthorizationRequestOptions.md)
+- [`TokenEndpointRequestOptions`](TokenEndpointRequestOptions.md)
+- [`ClientCredentialsGrantRequestOptions`](ClientCredentialsGrantRequestOptions.md)
+- [`RevocationRequestOptions`](RevocationRequestOptions.md)
+- [`IntrospectionRequestOptions`](IntrospectionRequestOptions.md)
+- [`DeviceAuthorizationRequestOptions`](DeviceAuthorizationRequestOptions.md)
 
-  ↳↳ [`TokenEndpointRequestOptions`](TokenEndpointRequestOptions.md)
+## Properties
 
-  ↳↳ [`ClientCredentialsGrantRequestOptions`](ClientCredentialsGrantRequestOptions.md)
+### \[useMtlsAlias\]?
 
-  ↳↳ [`RevocationRequestOptions`](RevocationRequestOptions.md)
+> `optional` **\[useMtlsAlias\]**: `boolean`
 
-  ↳↳ [`IntrospectionRequestOptions`](IntrospectionRequestOptions.md)
+See [useMtlsAlias](../variables/useMtlsAlias.md).
 
-  ↳↳ [`DeviceAuthorizationRequestOptions`](DeviceAuthorizationRequestOptions.md)
+#### Inherited from
+
+[`UseMTLSAliasOptions`](UseMTLSAliasOptions.md).[`[useMtlsAlias]`](UseMTLSAliasOptions.md#%5Busemtlsalias%5D)
+
+***
+
+### clientPrivateKey?
+
+> `optional` **clientPrivateKey**: [`CryptoKey`](https://developer.mozilla.org/docs/Web/API/CryptoKey) \| [`PrivateKey`](PrivateKey.md)
+
+Private key to use for `private_key_jwt`
+[client authentication](../type-aliases/ClientAuthenticationMethod.md). Its algorithm must be compatible with
+a supported [JWS `alg` Algorithm](../type-aliases/JWSAlgorithm.md).

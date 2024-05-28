@@ -1,8 +1,10 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Variable: useMtlsAlias
 
-[💗 Help the project](https://github.com/sponsors/panva)
-
-• `Const` **useMtlsAlias**: unique `symbol`
+> `const` **useMtlsAlias**: unique `symbol`
 
 When combined with [customFetch](customFetch.md) (to use a Fetch API implementation that supports client
 certificates) this can be used to target FAPI 2.0 profiles that utilize Mutual-TLS for either
@@ -13,7 +15,7 @@ When configured on an interface that extends [UseMTLSAliasOptions](../interfaces
 prioritize an endpoint URL present in
 [`as.mtls_endpoint_aliases`](../interfaces/AuthorizationServer.md#mtls_endpoint_aliases).
 
-**`Example`**
+## Examples
 
 (Node.js) Using [nodejs/undici](https://github.com/nodejs/undici) for Mutual-TLS Client
 Authentication and Certificate-Bound Access Tokens support.
@@ -38,8 +40,6 @@ const response = await oauth.pushedAuthorizationRequest(as, client, params, {
 })
 ```
 
-**`Example`**
-
 (Deno) Using Deno.createHttpClient API for Mutual-TLS Client Authentication and Certificate-Bound
 Access Tokens support. This is currently (Jan 2023) locked behind the --unstable command line
 flag.
@@ -63,6 +63,6 @@ const response = await oauth.pushedAuthorizationRequest(as, client, params, {
 })
 ```
 
-**`See`**
+## See
 
 [RFC 8705 - OAuth 2.0 Mutual-TLS Client Authentication and Certificate-Bound Access Tokens](https://www.rfc-editor.org/rfc/rfc8705.html)

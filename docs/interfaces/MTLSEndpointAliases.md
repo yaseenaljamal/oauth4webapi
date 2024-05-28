@@ -1,72 +1,85 @@
+[**oauth4webapi**](../README.md) • **Docs**
+
+***
+
 # Interface: MTLSEndpointAliases
 
-[💗 Help the project](https://github.com/sponsors/panva)
+## Extends
+
+- [`Pick`](https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys)\<[`AuthorizationServer`](AuthorizationServer.md), `"token_endpoint"` \| `"revocation_endpoint"` \| `"introspection_endpoint"` \| `"device_authorization_endpoint"` \| `"userinfo_endpoint"` \| `"pushed_authorization_request_endpoint"`\>
 
 ## Indexable
 
-▪ [metadata: `string`]: [`JsonValue`](../types/JsonValue.md) \| `undefined`
-
-## Table of contents
-
-### Properties
-
-- [device\_authorization\_endpoint](MTLSEndpointAliases.md#device_authorization_endpoint)
-- [introspection\_endpoint](MTLSEndpointAliases.md#introspection_endpoint)
-- [pushed\_authorization\_request\_endpoint](MTLSEndpointAliases.md#pushed_authorization_request_endpoint)
-- [revocation\_endpoint](MTLSEndpointAliases.md#revocation_endpoint)
-- [token\_endpoint](MTLSEndpointAliases.md#token_endpoint)
-- [userinfo\_endpoint](MTLSEndpointAliases.md#userinfo_endpoint)
+ \[`metadata`: `string`\]: [`JsonValue`](../type-aliases/JsonValue.md) \| `undefined`
 
 ## Properties
 
-### device\_authorization\_endpoint
+### device\_authorization\_endpoint?
 
-• `Optional` `Readonly` **device\_authorization\_endpoint**: `string`
+> `optional` `readonly` **device\_authorization\_endpoint**: `string`
 
 URL of the authorization server's device authorization endpoint.
 
-___
+#### Inherited from
 
-### introspection\_endpoint
+`Pick.device_authorization_endpoint`
 
-• `Optional` `Readonly` **introspection\_endpoint**: `string`
+***
+
+### introspection\_endpoint?
+
+> `optional` `readonly` **introspection\_endpoint**: `string`
 
 URL of the authorization server's introspection endpoint.
 
-___
+#### Inherited from
 
-### pushed\_authorization\_request\_endpoint
+`Pick.introspection_endpoint`
 
-• `Optional` `Readonly` **pushed\_authorization\_request\_endpoint**: `string`
+***
+
+### pushed\_authorization\_request\_endpoint?
+
+> `optional` `readonly` **pushed\_authorization\_request\_endpoint**: `string`
 
 URL of the authorization server's pushed authorization request endpoint.
 
-___
+#### Inherited from
 
-### revocation\_endpoint
+`Pick.pushed_authorization_request_endpoint`
 
-• `Optional` `Readonly` **revocation\_endpoint**: `string`
+***
+
+### revocation\_endpoint?
+
+> `optional` `readonly` **revocation\_endpoint**: `string`
 
 URL of the authorization server's revocation endpoint.
 
-___
+#### Inherited from
 
-### token\_endpoint
+`Pick.revocation_endpoint`
 
-• `Optional` `Readonly` **token\_endpoint**: `string`
+***
+
+### token\_endpoint?
+
+> `optional` `readonly` **token\_endpoint**: `string`
 
 URL of the authorization server's token endpoint.
 
-___
+#### Inherited from
 
-### userinfo\_endpoint
+`Pick.token_endpoint`
 
-• `Optional` `Readonly` **userinfo\_endpoint**: `string`
+***
+
+### userinfo\_endpoint?
+
+> `optional` `readonly` **userinfo\_endpoint**: `string`
 
 URL of the authorization server's UserInfo Endpoint.
 
-## Hierarchy
+#### Inherited from
 
-- [`Pick`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys )\<[`AuthorizationServer`](AuthorizationServer.md), ``"token_endpoint"`` \| ``"revocation_endpoint"`` \| ``"introspection_endpoint"`` \| ``"device_authorization_endpoint"`` \| ``"userinfo_endpoint"`` \| ``"pushed_authorization_request_endpoint"``\>
-
-  ↳ **`MTLSEndpointAliases`**
+`Pick.userinfo_endpoint`

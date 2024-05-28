@@ -1,15 +1,17 @@
-# Function: generateRandomNonce
+[**oauth4webapi**](../README.md) • **Docs**
 
-[💗 Help the project](https://github.com/sponsors/panva)
+***
 
-▸ **generateRandomNonce**(): `string`
+# Function: generateRandomNonce()
+
+> **generateRandomNonce**(): `string`
 
 Generate random `nonce` value.
 
-#### Returns
+## Returns
 
 `string`
 
-**`See`**
+## See
 
 [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html#IDToken)
