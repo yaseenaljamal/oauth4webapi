@@ -42,7 +42,7 @@ ___
 
 ### clientPrivateKey
 
-• `Optional` **clientPrivateKey**: [`CryptoKey`]( https://developer.mozilla.org/docs/Web/API/CryptoKey ) \| [`PrivateKey`](PrivateKey.md)
+• `Optional` **clientPrivateKey**: [`CryptoKey`]( https://developer.mozilla.org/docs/Web/API/CryptoKey ) \| [`PrivateKeyAuthOptions`](PrivateKeyAuthOptions.md)
 
 Private key to use for `private_key_jwt`
 [client authentication](../types/ClientAuthenticationMethod.md). Its algorithm must be compatible with

@@ -59,6 +59,13 @@ export interface PrivateKey {
   kid?: string
 }
 
+export interface PrivateKeyAuthOptions extends PrivateKey {
+  /**
+   * The value to use as `aud` (JWT Audience) for the Private Key JWT assertion.
+   */
+  aud?: string | string[]
+}
+
 /**
  * Supported Client Authentication Methods.
  *
@@ -1275,7 +1282,7 @@ export interface AuthenticatedRequestOptions extends UseMTLSAliasOptions {
    * {@link ClientAuthenticationMethod client authentication}. Its algorithm must be compatible with
    * a supported {@link JWSAlgorithm JWS `alg` Algorithm}.
    */
-  clientPrivateKey?: CryptoKey | PrivateKey
+  clientPrivateKey?: CryptoKey | PrivateKeyAuthOptions
 }
 
 export interface PushedAuthorizationRequestOptions
@@ -1393,11 +1400,15 @@ function epochTime() {
   return Math.floor(Date.now() / 1000)
 }
 
-function clientAssertion(as: AuthorizationServer, client: Client) {
+function clientAssertion(
+  as: AuthorizationServer,
+  client: Client,
+  aud?: PrivateKeyAuthOptions['aud'],
+) {
   const now = epochTime() + getClockSkew(client)
   return {
     jti: randomBytes(),
-    aud: [as.issuer, as.token_endpoint],
+    aud: aud ?? [as.issuer, as.token_endpoint],
     exp: now + 60,
     iat: now,
     nbf: now,
@@ -1414,13 +1425,14 @@ async function privateKeyJwt(
   client: Client,
   key: CryptoKey,
   kid?: string,
+  aud?: PrivateKeyAuthOptions['aud'],
 ) {
   return jwt(
     {
       alg: keyToJws(key),
       kid,
     },
-    clientAssertion(as, client),
+    clientAssertion(as, client, aud),
     key,
   )
 }
@@ -1479,7 +1491,7 @@ async function clientAuthentication(
   client: Client,
   body: URLSearchParams,
   headers: Headers,
-  clientPrivateKey?: CryptoKey | PrivateKey,
+  clientPrivateKey?: CryptoKey | PrivateKeyAuthOptions,
 ) {
   body.delete('client_secret')
   body.delete('client_assertion_type')
@@ -1511,9 +1523,13 @@ async function clientAuthentication(
       if (!isPrivateKey(key)) {
         throw new TypeError('"options.clientPrivateKey.key" must be a private CryptoKey')
       }
+      let aud: PrivateKeyAuthOptions['aud']
+      if (!(clientPrivateKey instanceof CryptoKey)) {
+        ;({ aud } = clientPrivateKey)
+      }
       body.set('client_id', client.client_id)
       body.set('client_assertion_type', 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer')
-      body.set('client_assertion', await privateKeyJwt(as, client, key, kid))
+      body.set('client_assertion', await privateKeyJwt(as, client, key, kid, aud))
       break
     }
     // @ts-expect-error

@@ -157,6 +157,7 @@
 - [OAuth2TokenEndpointResponse](interfaces/OAuth2TokenEndpointResponse.md)
 - [OpenIDTokenEndpointResponse](interfaces/OpenIDTokenEndpointResponse.md)
 - [PrivateKey](interfaces/PrivateKey.md)
+- [PrivateKeyAuthOptions](interfaces/PrivateKeyAuthOptions.md)
 - [ProtectedResourceRequestOptions](interfaces/ProtectedResourceRequestOptions.md)
 - [PushedAuthorizationRequestOptions](interfaces/PushedAuthorizationRequestOptions.md)
 - [PushedAuthorizationResponse](interfaces/PushedAuthorizationResponse.md)

@@ -1,4 +1,4 @@
-# Interface: PrivateKey
+# Interface: PrivateKeyAuthOptions
 
 [💗 Help the project](https://github.com/sponsors/panva)
 
@@ -9,8 +9,9 @@ added as a `kid` JOSE Header Parameter.
 
 ### Properties
 
-- [key](PrivateKey.md#key)
-- [kid](PrivateKey.md#kid)
+- [key](PrivateKeyAuthOptions.md#key)
+- [aud](PrivateKeyAuthOptions.md#aud)
+- [kid](PrivateKeyAuthOptions.md#kid)
 
 ## Properties
 
@@ -24,6 +25,14 @@ Its algorithm must be compatible with a supported [JWS `alg` Algorithm](../types
 
 ___
 
+### aud
+
+• `Optional` **aud**: `string` \| `string`[]
+
+The value to use as `aud` (JWT Audience) for the Private Key JWT assertion.
+
+___
+
 ### kid
 
 • `Optional` **kid**: `string`
@@ -33,6 +42,6 @@ ID) will be added to the JOSE Header.
 
 ## Hierarchy
 
-- **`PrivateKey`**
+- [`PrivateKey`](PrivateKey.md)
 
-  ↳ [`PrivateKeyAuthOptions`](PrivateKeyAuthOptions.md)
+  ↳ **`PrivateKeyAuthOptions`**
